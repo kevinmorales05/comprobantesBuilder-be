@@ -96,146 +96,204 @@ export class BuildcomprobanteService {
   }
   async sendComprobante(data: Comprobantes): Promise<any> {
     // Read the template file
-
-    const templateHtml = fs.readFileSync(
-      path.join(process.cwd(), 'src', 'templates', 'comprobante.hbs'),
-      'utf8',
-    );
-    // Compile the template
-    const template = Handlebars.compile(templateHtml);
-
-    // if (data.comprobantes.length > 0) {
-    //   data.comprobantes.map((comprobante) => {
-    //     const html = template(comprobante);
-    //     //console.log('testing correct file reading', html);
-
-    //     const dataInfo = JSON.stringify({
-    //       sender: {
-    //         name: 'Generador de Comprobantes SPEI',
-    //         email: 'kevin@quantumpay.mx',
-    //       },
-    //       to: [
-    //         {
-    //           email: data.emailToSend,
-    //           name: 'Comprobante Generado',
-    //         },
-    //       ],
-    //       subject: 'Comprobante Generado',
-    //       htmlContent: html,
-    //     });
-    //     const config = {
-    //       method: 'post',
-    //       maxBodyLength: Infinity,
-    //       url: process.env.URL_BREVO,
-    //       headers: {
-    //         Accept: 'application/json',
-    //         'api-key': process.env.APIKEY_BREVO,
-    //         'Content-Type': 'application/json',
-    //       },
-    //       data: dataInfo,
-    //     };
-    //     axios
-    //       .request(config)
-    //       .then((response) => {
-    //         //console.log(JSON.stringify(response.data));
-    //         console.log('response status ', response.status);
-    //         //console.log('response ', response);
-    //         if (response.status === 201) {
-    //           console.log('yes it is 201');
-    //         }
-    //       })
-    //       .catch((error) => {
-    //         console.log(error);
-    //       });
-    //   });
-    // }
-
-    if (data.comprobantes.length > 0) {
-      for (let i = 0; i < data.comprobantes.length; i++) {
-        console.log('Item ', i);
-        const html = template(data.comprobantes[i]);
-        //console.log('testing correct file reading', html);
-        // Launch a headless browser
-        const browser = await puppeteer.launch();
-        const page = await browser.newPage();
-
-        // Set the HTML content
-        await page.setContent(html, {
-          waitUntil: 'networkidle0',
-        });
-
-        // Generate PDF buffer
-        const pdfBuffer = await page.pdf({
-          format: 'A4',
-        });
-
-        await browser.close();
-        const outputPath = path.join(
-          process.cwd(),
-          'src',
-          'pdfs',
-          'output.pdf',
+    if (data.comprobantes[0].company) {
+      if (data.comprobantes[0].company === 'Tesored') {
+        console.log('Tesored template!');
+        const templateHtml = fs.readFileSync(
+          path.join(process.cwd(), 'src', 'templates', 'comprobante.hbs'),
+          'utf8',
         );
-        fs.writeFileSync(outputPath, pdfBuffer);
-        const pdfBufferConverted = Buffer.from(pdfBuffer);
-        const pdfBase64 = pdfBufferConverted.toString('base64');
+        // Compile the template
+        const template = Handlebars.compile(templateHtml);
 
-        const dataInfo = JSON.stringify({
-          sender: {
-            name: 'Generador de Comprobantes SPEI',
-            email: 'kevin@quantumpay.mx',
-          },
-          to: [
-            {
-              email: data.emailToSend,
-              name: 'Comprobante Generado',
-            },
-          ],
-          subject: 'Comprobante Generado',
-          htmlContent: html,
-          attachment: [
-            {
-              name: 'comprobante.pdf',
-              content: pdfBase64,
-            },
-          ],
-        });
-        const config = {
-          method: 'post',
-          maxBodyLength: Infinity,
-          url: process.env.URL_BREVO,
-          headers: {
-            Accept: 'application/json',
-            'api-key': process.env.APIKEY_BREVO,
-            'Content-Type': 'application/json',
-          },
-          data: dataInfo,
-        };
-        axios
-          .request(config)
-          .then((response) => {
-            //console.log(JSON.stringify(response.data));
-            console.log('response status ', response.status);
-            //console.log('response ', response);
-            if (response.status === 201) {
-              console.log('yes it is 201');
-            }
-          })
-          .catch((error) => {
-            console.log(error);
-            return {
-              message:
-                'Error al momento de enviar correos electrónicos a los destinatarios!',
-              code: '02',
+        if (data.comprobantes.length > 0) {
+          for (let i = 0; i < data.comprobantes.length; i++) {
+            console.log('Item ', i);
+            const html = template(data.comprobantes[i]);
+            //console.log('testing correct file reading', html);
+            // Launch a headless browser
+            const browser = await puppeteer.launch();
+            const page = await browser.newPage();
+
+            // Set the HTML content
+            await page.setContent(html, {
+              waitUntil: 'networkidle0',
+            });
+
+            // Generate PDF buffer
+            const pdfBuffer = await page.pdf({
+              format: 'A4',
+            });
+
+            await browser.close();
+            const outputPath = path.join(
+              process.cwd(),
+              'src',
+              'pdfs',
+              'output.pdf',
+            );
+            fs.writeFileSync(outputPath, pdfBuffer);
+            const pdfBufferConverted = Buffer.from(pdfBuffer);
+            const pdfBase64 = pdfBufferConverted.toString('base64');
+
+            const dataInfo = JSON.stringify({
+              sender: {
+                name: 'Generador de Comprobantes SPEI',
+                email: 'kevin@quantumpay.mx',
+              },
+              to: [
+                {
+                  email: data.emailToSend,
+                  name: 'Comprobante Generado',
+                },
+              ],
+              subject: 'Comprobante Generado',
+              htmlContent: html,
+              attachment: [
+                {
+                  name: 'comprobante.pdf',
+                  content: pdfBase64,
+                },
+              ],
+            });
+            const config = {
+              method: 'post',
+              maxBodyLength: Infinity,
+              url: process.env.URL_BREVO,
+              headers: {
+                Accept: 'application/json',
+                'api-key': process.env.APIKEY_BREVO,
+                'Content-Type': 'application/json',
+              },
+              data: dataInfo,
             };
-          });
+            axios
+              .request(config)
+              .then((response) => {
+                //console.log(JSON.stringify(response.data));
+                console.log('response status ', response.status);
+                //console.log('response ', response);
+                if (response.status === 201) {
+                  console.log('yes it is 201');
+                }
+              })
+              .catch((error) => {
+                console.log(error);
+                return {
+                  message:
+                    'Error al momento de enviar correos electrónicos a los destinatarios!',
+                  code: '02',
+                };
+              });
+          }
+        }
+        return {
+          message:
+            'El reporte fue realizado con éxito y se entregó un correo de confirmación al equipo de Cumplimiento!',
+          code: '01',
+        };
+      } else {
+        console.log('Traxwire and Inbursa template!');
+        const templateHtml = fs.readFileSync(
+          path.join(
+            process.cwd(),
+            'src',
+            'templates',
+            'comprobanteTraxwire.hbs',
+          ),
+          'utf8',
+        );
+        // Compile the template
+        const template = Handlebars.compile(templateHtml);
+
+        if (data.comprobantes.length > 0) {
+          for (let i = 0; i < data.comprobantes.length; i++) {
+            console.log('Item ', i);
+            const html = template(data.comprobantes[i]);
+            //console.log('testing correct file reading', html);
+            // Launch a headless browser
+            const browser = await puppeteer.launch();
+            const page = await browser.newPage();
+
+            // Set the HTML content
+            await page.setContent(html, {
+              waitUntil: 'networkidle0',
+            });
+
+            // Generate PDF buffer
+            const pdfBuffer = await page.pdf({
+              format: 'A4',
+            });
+
+            await browser.close();
+            const outputPath = path.join(
+              process.cwd(),
+              'src',
+              'pdfs',
+              'output.pdf',
+            );
+            fs.writeFileSync(outputPath, pdfBuffer);
+            const pdfBufferConverted = Buffer.from(pdfBuffer);
+            const pdfBase64 = pdfBufferConverted.toString('base64');
+
+            const dataInfo = JSON.stringify({
+              sender: {
+                name: 'Generador de Comprobantes SPEI',
+                email: 'kevin@quantumpay.mx',
+              },
+              to: [
+                {
+                  email: data.emailToSend,
+                  name: 'Comprobante Generado',
+                },
+              ],
+              subject: 'Comprobante Generado',
+              htmlContent: html,
+              attachment: [
+                {
+                  name: 'comprobante.pdf',
+                  content: pdfBase64,
+                },
+              ],
+            });
+            const config = {
+              method: 'post',
+              maxBodyLength: Infinity,
+              url: process.env.URL_BREVO,
+              headers: {
+                Accept: 'application/json',
+                'api-key': process.env.APIKEY_BREVO,
+                'Content-Type': 'application/json',
+              },
+              data: dataInfo,
+            };
+            axios
+              .request(config)
+              .then((response) => {
+                //console.log(JSON.stringify(response.data));
+                console.log('response status ', response.status);
+                //console.log('response ', response);
+                if (response.status === 201) {
+                  console.log('yes it is 201');
+                }
+              })
+              .catch((error) => {
+                console.log(error);
+                return {
+                  message:
+                    'Error al momento de enviar correos electrónicos a los destinatarios!',
+                  code: '02',
+                };
+              });
+          }
+        }
+        return {
+          message:
+            'El reporte fue realizado con éxito y se entregó un correo de confirmación al equipo de Cumplimiento!',
+          code: '01',
+        };
       }
     }
-    return {
-      message:
-        'El reporte fue realizado con éxito y se entregó un correo de confirmación al equipo de Cumplimiento!',
-      code: '01',
-    };
   }
   async sendInBunch(data: Comprobantes): Promise<any> {
     // Read the template file

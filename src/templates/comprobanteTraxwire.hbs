@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./comprobante.css" />
+    <link rel="stylesheet" href="./comprobanteTraxwire" />
     <title>Nuevo Comprobante</title>
     <style>
       body {
@@ -98,53 +98,55 @@ footer {
   <body>
     <header>
       <h2>COMPROBANTE DE OPERACIÓN</h2>
-      <img class="logo" src="https://firebasestorage.googleapis.com/v0/b/generador-de-comprobantes.appspot.com/o/TESORED.png?alt=media&token=a584eaef-d8d2-42b0-847d-6dab97206d9a" alt="Tesored Logo" />
+      <img class="logo" src="https://firebasestorage.googleapis.com/v0/b/generador-de-comprobantes.appspot.com/o/TRAXWIRE.png?alt=media&token=3bf3fd34-96c5-4df1-aa0d-5d301f1e457a" alt="Traxwire Logo" />
     </header>
 
     <section id="main-block">
       <div id="amount-block">
         <h3 id="amount">${{amount}}</h3>
         <h2 id="trans-date">{{fecha}}</h2>
-        <p id="trans-hour">{{hora}}</p>
       </div>
       <div id="comprobante-block">
         <table>
           <tr>
-            <td class="name-row">Operación:</td>
-            <td id="operacion">
+            <td class="name-row">Movimiento:</td>
+            <td id="movimiento">
               {{operacion}}
             </td>
           </tr>
           <tr>
-            <td class="name-row">Nombre del beneficiario:</td>
+            <td class="name-row">Ordenante:</td>
             <td id="nombre">{{beneficiario}}</td>
-          </tr>
-          <tr>
-            <td class="name-row">Institución destino:</td>
-            <td id="institucion">{{institucion}}</td>
           </tr>
           <tr>
             <td class="name-row">Cuenta del beneficiario:</td>
             <td id="cuenta">{{cuenta}}</td>
           </tr>
           <tr>
-            <td class="name-row">Referencia:</td>
+            <td class="name-row">Referencia Numérica:</td>
             <td id="referencia">{{referencia}}</td>
           </tr>
           <tr>
-            <td class="name-row">Concepto de Pago:</td>
+            <td class="name-row">Referencia Leyenda:</td>
             <td id="concepto">{{concepto}}</td>
           </tr>
           <tr>
             <td class="name-row">Clave de rastreo:</td>
             <td id="clave">{{clave}}</td>
           </tr>
-          <tr>
-            <td class="name-row">Nota:</td>
-            <td id="nota">
-              {{nota}}
-            </td>
+          <tr></tr>
+            <td class="name-row">Cargo:</td>
+            <td id="clave">{{cargo}}</td>
           </tr>
+          <tr></tr>
+            <td class="name-row">Abono:</td>
+            <td id="clave">{{abono}}</td>
+          </tr>
+          <tr></tr>
+            <td class="name-row">Saldo:</td>
+            <td id="clave">{{saldo}}</td>
+          </tr>
+          
         </table>
       </div>
       <div id="aclaraciones-block">

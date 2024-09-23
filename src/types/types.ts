@@ -18,4 +18,7 @@ export interface Comprobante {
   nombreEmpresa: string;
   registroEmpresa: string;
   direccionEmpresa: string;
+  cargo?: string;
+  abono?: string;
+  saldo?: string;
 }

@@ -1,0 +1,87 @@
+body {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#comprobante-block {
+    margin: 20px;
+}
+#amount {
+    font-size: 40px;
+    color: skyblue;
+    font-weight: bolder;
+    margin: 0px;
+}
+#trans-date {
+    color: skyblue;
+    font-weight: bolder;
+    font-size: 20px;
+    margin: 0px;
+    margin-top: 10px;
+}
+#trans-hour {
+    color: skyblue;
+    font-weight: bolder;
+    font-size: 20px; 
+    margin: 0px;
+    margin-bottom: 40px;
+}
+#aclaraciones-block {
+   
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+header {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.logo {
+    width: 200px;
+    height: 100px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    align-self: center;
+}
+#main-block {
+    width: 60%;
+    padding: 20px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+
+table tr:nth-child(even) {
+    background-color: #ffffff; 
+}
+
+table tr:nth-child(odd) {
+    background-color: skyblue;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+.name-row {
+    font-weight: bold;
+}
+footer {
+    text-align: center;
+}
+#nombreEmpresa, #registroEmpresa, #direccionEmpresa {
+    margin: 0;
+}
+#direccionEmpresa {
+    margin-bottom: 30px;
+}
