@@ -209,6 +209,11 @@ export class BuildcomprobanteService {
         if (data.comprobantes.length > 0) {
           for (let i = 0; i < data.comprobantes.length; i++) {
             console.log('Item ', i);
+            if (data.comprobantes[i].abono === '-') {
+              data.comprobantes[i].abono = '';
+            } else {
+              data.comprobantes[i].cargo = '';
+            }
             const html = template(data.comprobantes[i]);
             //console.log('testing correct file reading', html);
             // Launch a headless browser
