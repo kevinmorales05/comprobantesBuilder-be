@@ -26,7 +26,7 @@ export class BuildcomprobanteService {
     const browser = await puppeteer.launch({
       headless: true, // Ensure headless mode is enabled
       args: ['--no-sandbox', '--disable-setuid-sandbox'], // Disable sandboxing
-      // executablePath: '/usr/bin/chromium-browser', // Uncomment if a specific path is required
+      executablePath: '/usr/bin/chromium-browser', // Uncomment if a specific path is required
     });
     const page = await browser.newPage();
 
@@ -119,7 +119,7 @@ export class BuildcomprobanteService {
             const browser = await puppeteer.launch({
               headless: true, // Ensure headless mode is enabled
               args: ['--no-sandbox', '--disable-setuid-sandbox'], // Disable sandboxing
-              // executablePath: '/usr/bin/chromium-browser', // Uncomment if a specific path is required
+              executablePath: '/usr/bin/chromium-browser', // Uncomment if a specific path is required
             });
             const page = await browser.newPage();
 
@@ -228,7 +228,7 @@ export class BuildcomprobanteService {
             const browser = await puppeteer.launch({
               headless: true, // Ensure headless mode is enabled
               args: ['--no-sandbox', '--disable-setuid-sandbox'], // Disable sandboxing
-              // executablePath: '/usr/bin/chromium-browser', // Uncomment if a specific path is required
+              executablePath: '/usr/bin/chromium-browser', // Uncomment if a specific path is required
             });
             const page = await browser.newPage();
 
@@ -329,7 +329,7 @@ export class BuildcomprobanteService {
     const browser = await puppeteer.launch({
       headless: true, // Ensure headless mode is enabled
       args: ['--no-sandbox', '--disable-setuid-sandbox'], // Disable sandboxing
-      // executablePath: '/usr/bin/chromium-browser', // Uncomment if a specific path is required
+      executablePath: '/usr/bin/chromium-browser', // Uncomment if a specific path is required
     });
     const page = await browser.newPage();
 
