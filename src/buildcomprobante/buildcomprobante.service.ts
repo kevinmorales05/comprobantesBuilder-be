@@ -23,7 +23,11 @@ export class BuildcomprobanteService {
     const html = template(data.comprobantes[0]);
 
     // Launch a headless browser
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+      headless: true, // Ensure headless mode is enabled
+      args: ['--no-sandbox', '--disable-setuid-sandbox'], // Disable sandboxing
+      // executablePath: '/usr/bin/chromium-browser', // Uncomment if a specific path is required
+    });
     const page = await browser.newPage();
 
     // Set the HTML content
@@ -112,7 +116,11 @@ export class BuildcomprobanteService {
             const html = template(data.comprobantes[i]);
             //console.log('testing correct file reading', html);
             // Launch a headless browser
-            const browser = await puppeteer.launch();
+            const browser = await puppeteer.launch({
+              headless: true, // Ensure headless mode is enabled
+              args: ['--no-sandbox', '--disable-setuid-sandbox'], // Disable sandboxing
+              // executablePath: '/usr/bin/chromium-browser', // Uncomment if a specific path is required
+            });
             const page = await browser.newPage();
 
             // Set the HTML content
@@ -217,7 +225,11 @@ export class BuildcomprobanteService {
             const html = template(data.comprobantes[i]);
             //console.log('testing correct file reading', html);
             // Launch a headless browser
-            const browser = await puppeteer.launch();
+            const browser = await puppeteer.launch({
+              headless: true, // Ensure headless mode is enabled
+              args: ['--no-sandbox', '--disable-setuid-sandbox'], // Disable sandboxing
+              // executablePath: '/usr/bin/chromium-browser', // Uncomment if a specific path is required
+            });
             const page = await browser.newPage();
 
             // Set the HTML content
@@ -314,7 +326,11 @@ export class BuildcomprobanteService {
     const html = template(data.comprobantes[0]);
 
     // Launch a headless browser
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+      headless: true, // Ensure headless mode is enabled
+      args: ['--no-sandbox', '--disable-setuid-sandbox'], // Disable sandboxing
+      // executablePath: '/usr/bin/chromium-browser', // Uncomment if a specific path is required
+    });
     const page = await browser.newPage();
 
     // Set the HTML content
