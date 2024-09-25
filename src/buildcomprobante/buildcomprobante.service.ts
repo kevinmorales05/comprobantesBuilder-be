@@ -5,7 +5,7 @@ import * as Handlebars from 'handlebars';
 import * as puppeteer from 'puppeteer';
 import { Comprobantes } from 'src/types/types';
 import axios from 'axios';
-import { join } from 'path';
+import { chromium } from 'playwright';
 
 @Injectable()
 export class BuildcomprobanteService {
@@ -23,18 +23,13 @@ export class BuildcomprobanteService {
     const html = template(data.comprobantes[0]);
 
     // Launch a headless browser
-    const browser = await puppeteer.launch({
-      headless: true, // Ensure headless mode is enabled
-      args: ['--no-sandbox', '--disable-setuid-sandbox'], // Disable sandboxing
-      executablePath:
-        '/opt/render/.cache/puppeteer/chrome/linux-128.0.6613.119/chrome-linux64/chrome', // Uncomment if a specific path is required
+    const browser = await chromium.launch({
+      headless: true,
     });
     const page = await browser.newPage();
 
     // Set the HTML content
-    await page.setContent(html, {
-      waitUntil: 'networkidle0',
-    });
+    await page.setContent(html, { waitUntil: 'domcontentloaded' });
 
     // Generate PDF buffer
     const pdfBuffer = await page.pdf({
@@ -117,18 +112,13 @@ export class BuildcomprobanteService {
             const html = template(data.comprobantes[i]);
             //console.log('testing correct file reading', html);
             // Launch a headless browser
-            const browser = await puppeteer.launch({
-              headless: true, // Ensure headless mode is enabled
-              args: ['--no-sandbox', '--disable-setuid-sandbox'], // Disable sandboxing
-              executablePath:
-                '/opt/render/.cache/puppeteer/chrome/linux-128.0.6613.119/chrome-linux64/chrome', // Uncomment if a specific path is required
+            const browser = await chromium.launch({
+              headless: true,
             });
             const page = await browser.newPage();
 
             // Set the HTML content
-            await page.setContent(html, {
-              waitUntil: 'networkidle0',
-            });
+            await page.setContent(html, { waitUntil: 'domcontentloaded' });
 
             // Generate PDF buffer
             const pdfBuffer = await page.pdf({
@@ -227,18 +217,13 @@ export class BuildcomprobanteService {
             const html = template(data.comprobantes[i]);
             //console.log('testing correct file reading', html);
             // Launch a headless browser
-            const browser = await puppeteer.launch({
-              headless: true, // Ensure headless mode is enabled
-              args: ['--no-sandbox', '--disable-setuid-sandbox'], // Disable sandboxing
-              executablePath:
-                '/opt/render/.cache/puppeteer/chrome/linux-128.0.6613.119/chrome-linux64/chrome', // Uncomment if a specific path is required
+            const browser = await chromium.launch({
+              headless: true,
             });
             const page = await browser.newPage();
 
             // Set the HTML content
-            await page.setContent(html, {
-              waitUntil: 'networkidle0',
-            });
+            await page.setContent(html, { waitUntil: 'domcontentloaded' });
 
             // Generate PDF buffer
             const pdfBuffer = await page.pdf({
@@ -329,7 +314,7 @@ export class BuildcomprobanteService {
     const html = template(data.comprobantes[0]);
 
     // Launch a headless browser
-    const browser = await puppeteer.launch({
+    const browser = await chromium.launch({
       headless: true, // Ensure headless mode is enabled
       args: ['--no-sandbox', '--disable-setuid-sandbox'], // Disable sandboxing
       executablePath:
@@ -339,9 +324,7 @@ export class BuildcomprobanteService {
     const page = await browser.newPage();
 
     // Set the HTML content
-    await page.setContent(html, {
-      waitUntil: 'networkidle0',
-    });
+    await page.setContent(html, { waitUntil: 'domcontentloaded' });
 
     // Generate PDF buffer
     const pdfBuffer = await page.pdf({
