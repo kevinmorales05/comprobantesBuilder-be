@@ -1,4 +1,4 @@
-# Variables de entorno del proveedor de Correo electrónico
+# Variables de entorno del proveedor de Correo electrónic
 services:
   server:
     build:
