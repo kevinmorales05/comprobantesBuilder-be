@@ -1,0 +1,6 @@
+build:
+  docker:
+    web: Dockerfile  # Define que use el Dockerfile especificado
+
+run:
+  web: npm run start:prod  # Comando para iniciar la aplicación en Heroku

@@ -1,6 +1,17 @@
 # Usa una imagen base oficial que permite playwright
 FROM node:20-bookworm
 
+# Configurar variables de entorno
+# Define argumentos de construcción
+ARG NODE_ENV
+ARG APIKEY_BREVO
+ARG URL_BREVO
+
+# Configurar variables de entorno usando ARG
+ENV NODE_ENV=${NODE_ENV}
+ENV APIKEY_BREVO: ${APIKEY_BREVO}
+ENV URL_BREVO: ${URL_BREVO}
+
 RUN npx -y playwright@1.47.2 install --with-deps
 
 # Crea un directorio de trabajo
