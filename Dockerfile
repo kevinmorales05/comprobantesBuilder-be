@@ -27,6 +27,9 @@ RUN npm install
 # Compila la aplicación NestJS
 RUN npm run build
 
+# Install Playwright browsers
+RUN npx playwright install
+
 # Expone el puerto que utilizará la aplicación
 EXPOSE ${PORT}
 
