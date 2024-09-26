@@ -12,6 +12,9 @@ ENV NODE_ENV=${NODE_ENV}
 ENV APIKEY_BREVO: ${APIKEY_BREVO}
 ENV URL_BREVO: ${URL_BREVO}
 
+# Update npm to the latest version
+RUN npm install -g npm@latest
+# get playright
 RUN npx -y playwright@1.47.2 install --with-deps
 
 # Crea un directorio de trabajo
