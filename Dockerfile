@@ -28,7 +28,7 @@ RUN npm install
 RUN npm run build
 
 # Expone el puerto que utilizará la aplicación
-EXPOSE 3000
+EXPOSE ${PORT}
 
 # Comando para iniciar la aplicación
 CMD ["npm", "run", "start:prod"]

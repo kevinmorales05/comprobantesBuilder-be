@@ -15,7 +15,7 @@ async function bootstrap() {
     origin: '*', // Replace with the allowed domain
   };
   app.use(cors(corsOptions));
-
-  await app.listen(3000);
+  const port = process.env.PORT || 3000; // 3000 es solo para desarrollo local
+  await app.listen(port);
 }
 bootstrap();
