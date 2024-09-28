@@ -12,12 +12,20 @@ ENV NODE_ENV=${NODE_ENV}
 ENV APIKEY_BREVO: ${APIKEY_BREVO}
 ENV URL_BREVO: ${URL_BREVO}
 
-# Update npm to the latest version
-RUN npm install -g npm@latest
 # get playright
 RUN npx -y playwright@1.47.2 install --with-deps
 
-RUN ls -al /ms-playwright-cache && ls -al /ms-playwright-cache/chromium-1134
+# Check where Playwright installed the browsers
+RUN echo "Checking Playwright installation path..." \
+    && find / -type d -name "ms-playwright" -print \
+    && ls -al /root/.cache/ms-playwright
+
+# Update npm to the latest version
+RUN npm install -g npm@latest
+# get playright
+# RUN npx -y playwright@1.47.2 install --with-deps
+#PLAYWRIGHT_BROWSERS_PATH=/root/.cache/ms-playwright/chromium-1134
+RUN ls -al /root/.cache/ms-playwright && ls -al /root/.cache/ms-playwright/chromium-1134
 
 # Crea un directorio de trabajo
 WORKDIR /app
