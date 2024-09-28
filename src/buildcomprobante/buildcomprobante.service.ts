@@ -30,7 +30,7 @@ export class BuildcomprobanteService {
 
     // Set the HTML content
     await page.setContent(html, { waitUntil: 'domcontentloaded' });
-
+    await page.waitForLoadState('networkidle');
     // Generate PDF buffer
     const pdfBuffer = await page.pdf({
       format: 'A4',
@@ -119,6 +119,8 @@ export class BuildcomprobanteService {
 
             // Set the HTML content
             await page.setContent(html, { waitUntil: 'domcontentloaded' });
+            await page.waitForLoadState('networkidle'); // Espera a que se complete la carga de la red
+
 
             // Generate PDF buffer
             const pdfBuffer = await page.pdf({
@@ -224,7 +226,7 @@ export class BuildcomprobanteService {
 
             // Set the HTML content
             await page.setContent(html, { waitUntil: 'domcontentloaded' });
-
+            await page.waitForLoadState('networkidle');
             // Generate PDF buffer
             const pdfBuffer = await page.pdf({
               format: 'A4',
@@ -325,7 +327,7 @@ export class BuildcomprobanteService {
 
     // Set the HTML content
     await page.setContent(html, { waitUntil: 'domcontentloaded' });
-
+    await page.waitForLoadState('networkidle');
     // Generate PDF buffer
     const pdfBuffer = await page.pdf({
       format: 'A4',
