@@ -10,6 +10,9 @@ RUN mkdir -p /app \
     && mkdir -p /home/chromeuser/.cache \
     && chown -R chromeuser:chromeuser /home/chromeuser/.cache
 
+# Instalar Playwright y forzar la instalación de los navegadores
+RUN npx playwright install --with-deps
+
 # Cambiar al usuario no-root
 USER chromeuser
 
