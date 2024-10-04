@@ -1,5 +1,5 @@
 # Usa la imagen base de Playwright que incluye todos los navegadores
-FROM mcr.microsoft.com/playwright:focal as BASE
+FROM mcr.microsoft.com/playwright:v1.47.2-focal as BASE
 
 # Crear un usuario no-root llamado 'chromeuser'
 RUN useradd -ms /bin/bash chromeuser
