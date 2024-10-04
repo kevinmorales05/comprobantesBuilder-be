@@ -118,6 +118,7 @@ export class BuildcomprobanteService {
             );
             const browser = await chromium.launch({
               headless: true,
+              executablePath: process.env.PLAYWRIGHT_BROWSERS_PATH,
             });
             const page = await browser.newPage();
 
@@ -224,6 +225,7 @@ export class BuildcomprobanteService {
             // Launch a headless browser
             const browser = await chromium.launch({
               headless: true,
+              executablePath: process.env.PLAYWRIGHT_BROWSERS_PATH,
             });
             const page = await browser.newPage();
 
