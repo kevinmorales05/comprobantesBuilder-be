@@ -17,6 +17,7 @@ RUN npx -y playwright@1.47.2 install --with-deps
 
 # Asegurarse de que los permisos sean correctos para el directorio de Playwright
 RUN chmod -R 755 /root/.cache/ms-playwright
+RUN chmod -R 755 /root/.cache/ms-playwright/chromium-1134 
 
 RUN echo "root folders"
 RUN ls -al
