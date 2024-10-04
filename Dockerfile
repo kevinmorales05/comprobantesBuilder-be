@@ -22,9 +22,13 @@ COPY package*.json ./
 # Instalar las dependencias del proyecto
 RUN npm install
 
+RUN npx playwright install
 # Copiar el resto del código de la aplicación
 COPY . .
 
+RUN echo "SHOW FILES"
+
+RUN ls -la
 # Compilar la aplicación si es necesario (si usas TypeScript o algún builder como Next.js o NestJS)
 RUN npm run build
 
