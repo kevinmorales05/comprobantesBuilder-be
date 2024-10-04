@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as Handlebars from 'handlebars';
-import * as puppeteer from 'puppeteer';
 import { Comprobantes } from 'src/types/types';
 import axios from 'axios';
 import { chromium } from 'playwright';
@@ -122,6 +121,7 @@ export class BuildcomprobanteService {
               'Playwright Browsers Path:',
               process.env.PLAYWRIGHT_BROWSERS_PATH,
             );
+            //desde aqui
             const browser = await chromium.launch({
               headless: true,
               executablePath: process.env.PLAYWRIGHT_BROWSERS_PATH,
@@ -143,6 +143,7 @@ export class BuildcomprobanteService {
             });
 
             await browser.close();
+            //hasta aqui
             const outputPath = path.join(
               process.cwd(),
               'src',

@@ -31,7 +31,7 @@ $ pnpm run test:cov
 ```
 
 ## run just the docker file in local
-docker build --env-file .env -t myapp . docker run --env-file .env -p 3000:3000 myapp
+docker build --env-file .env -t builder-comprobantes . docker run --env-file .env -p 3000:3000 builder-comprobantes
 
 ## heroku add a new pack
 heroku buildpacks:add jontewks/puppeteer
