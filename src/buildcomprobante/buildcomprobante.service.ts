@@ -25,6 +25,8 @@ export class BuildcomprobanteService {
     // Launch a headless browser
     const browser = await chromium.launch({
       headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      executablePath: process.env.PLAYWRIGHT_BROWSERS_PATH,
     });
     const page = await browser.newPage();
 
@@ -119,6 +121,7 @@ export class BuildcomprobanteService {
             const browser = await chromium.launch({
               headless: true,
               executablePath: process.env.PLAYWRIGHT_BROWSERS_PATH,
+              args: ['--no-sandbox', '--disable-setuid-sandbox'],
             });
             const page = await browser.newPage();
 
@@ -226,6 +229,7 @@ export class BuildcomprobanteService {
             const browser = await chromium.launch({
               headless: true,
               executablePath: process.env.PLAYWRIGHT_BROWSERS_PATH,
+              args: ['--no-sandbox', '--disable-setuid-sandbox'],
             });
             const page = await browser.newPage();
 
@@ -324,9 +328,7 @@ export class BuildcomprobanteService {
     const browser = await chromium.launch({
       headless: true, // Ensure headless mode is enabled
       args: ['--no-sandbox', '--disable-setuid-sandbox'], // Disable sandboxing
-      executablePath:
-        '/opt/render/.cache/puppeteer/chrome/linux-128.0.6613.119/chrome-linux64/chrome', // Uncomment if a specific path is required
-      ////opt/render/.cache/puppeteer/chrome/linux-128.0.6613.119/chrome-linux64/chrome
+      executablePath: process.env.PLAYWRIGHT_BROWSERS_PATH,
     });
     const page = await browser.newPage();
 
