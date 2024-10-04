@@ -28,8 +28,7 @@ export class BuildcomprobanteService {
         '--no-sandbox',
         '--disable-setuid-sandbox',
         '--disable-dev-shm-usage',
-      ],
-      executablePath: process.env.PLAYWRIGHT_BROWSERS_PATH,
+  
     });
     const page = await browser.newPage();
 
@@ -124,7 +123,6 @@ export class BuildcomprobanteService {
             //desde aqui
             const browser = await chromium.launch({
               headless: true,
-              executablePath: process.env.PLAYWRIGHT_BROWSERS_PATH,
               args: [
                 '--no-sandbox',
                 '--disable-setuid-sandbox',
@@ -237,7 +235,6 @@ export class BuildcomprobanteService {
             // Launch a headless browser
             const browser = await chromium.launch({
               headless: true,
-              executablePath: process.env.PLAYWRIGHT_BROWSERS_PATH,
               args: [
                 '--no-sandbox',
                 '--disable-setuid-sandbox',
@@ -344,8 +341,7 @@ export class BuildcomprobanteService {
         '--no-sandbox',
         '--disable-setuid-sandbox',
         '--disable-dev-shm-usage',
-      ], // Disable sandboxing
-      executablePath: process.env.PLAYWRIGHT_BROWSERS_PATH,
+      ], // Disable sandbo
     });
     const page = await browser.newPage();
 
