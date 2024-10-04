@@ -32,6 +32,10 @@ COPY . .
 RUN echo "SHOW FILES"
 
 RUN ls -la
+
+RUN echo "SHOW FILES detail"
+
+RUN ls / -la
 # Compilar la aplicación si es necesario (si usas TypeScript o algún builder como Next.js o NestJS)
 RUN npm run build
 
