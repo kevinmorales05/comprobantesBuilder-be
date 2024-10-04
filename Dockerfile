@@ -15,6 +15,9 @@ ENV URL_BREVO: ${URL_BREVO}
 # get playright
 RUN npx -y playwright@1.47.2 install --with-deps
 
+RUN echo "root folders"
+RUN ls -al
+
 # Check where Playwright installed the browsers
 RUN echo "Checking Playwright installation path..." \
     && find / -type d -name "ms-playwright" -print \
@@ -25,6 +28,7 @@ RUN npm install -g npm@latest
 # get playright
 # RUN npx -y playwright@1.47.2 install --with-deps
 #PLAYWRIGHT_BROWSERS_PATH=/root/.cache/ms-playwright/chromium-1134
+RUN echo "This is the /root directory"
 RUN ls -al /root/.cache/ms-playwright && ls -al /root/.cache/ms-playwright/chromium-1134
 
 # Crea un directorio de trabajo

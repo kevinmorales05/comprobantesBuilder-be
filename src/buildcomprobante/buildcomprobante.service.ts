@@ -21,7 +21,7 @@ export class BuildcomprobanteService {
 
     // Render the template with data
     const html = template(data.comprobantes[0]);
-
+    //process.env.PLAYWRIGHT_BROWSERS_PATH
     // Launch a headless browser
     const browser = await chromium.launch({
       headless: true,
@@ -112,6 +112,10 @@ export class BuildcomprobanteService {
             const html = template(data.comprobantes[i]);
             //console.log('testing correct file reading', html);
             // Launch a headless browser
+            console.log(
+              'Playwright Browsers Path:',
+              process.env.PLAYWRIGHT_BROWSERS_PATH,
+            );
             const browser = await chromium.launch({
               headless: true,
             });
@@ -120,7 +124,6 @@ export class BuildcomprobanteService {
             // Set the HTML content
             await page.setContent(html, { waitUntil: 'domcontentloaded' });
             await page.waitForLoadState('networkidle'); // Espera a que se complete la carga de la red
-
 
             // Generate PDF buffer
             const pdfBuffer = await page.pdf({
