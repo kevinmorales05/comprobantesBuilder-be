@@ -9,11 +9,14 @@ ARG URL_BREVO
 
 # Configurar variables de entorno usando ARG
 ENV NODE_ENV=${NODE_ENV}
-ENV APIKEY_BREVO: ${APIKEY_BREVO}
-ENV URL_BREVO: ${URL_BREVO}
+ENV APIKEY_BREVO=${APIKEY_BREVO}
+ENV URL_BREVO=${URL_BREVO}
 
 # get playright
 RUN npx -y playwright@1.47.2 install --with-deps
+
+# Asegurarse de que los permisos sean correctos para el directorio de Playwright
+RUN chmod -R 755 /root/.cache/ms-playwright
 
 RUN echo "root folders"
 RUN ls -al
