@@ -120,7 +120,6 @@ export class BuildcomprobanteService {
             // Set the HTML content
             await page.setContent(html, { waitUntil: 'domcontentloaded' });
             await page.waitForLoadState('networkidle'); // Espera a que se complete la carga de la red
-
             // Generate PDF buffer
             const pdfBuffer = await page.pdf({
               format: 'A4',
@@ -128,13 +127,13 @@ export class BuildcomprobanteService {
 
             await browser.close();
             //hasta aqui
-            const outputPath = path.join(
-              process.cwd(),
-              'src',
-              'pdfs',
-              'output.pdf',
-            );
-            fs.writeFileSync(outputPath, pdfBuffer);
+            // const outputPath = path.join(
+            //   process.cwd(),
+            //   'src',
+            //   'pdfs',
+            //   'output.pdf',
+            // );
+            ///fs.writeFileSync(outputPath, pdfBuffer);
             const pdfBufferConverted = Buffer.from(pdfBuffer);
             const pdfBase64 = pdfBufferConverted.toString('base64');
 
