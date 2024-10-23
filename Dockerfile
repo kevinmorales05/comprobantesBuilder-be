@@ -40,6 +40,10 @@ RUN ls / -la
 # Compilar la aplicación si es necesario (si usas TypeScript o algún builder como Next.js o NestJS)
 RUN npm run build
 
+RUN # Instalar los navegadores de Playwright durante la construcción de la imagen
+RUN pnpm exec playwright install --with-deps
+
+
 # Exponer el puerto (Heroku usa la variable de entorno $PORT)
 EXPOSE $PORT
 
