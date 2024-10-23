@@ -22,14 +22,7 @@ export class BuildcomprobanteService {
     const html = template(data.comprobantes[0]);
     //process.env.PLAYWRIGHT_BROWSERS_PATH
     // Launch a headless browser
-    const browser = await chromium.launch({
-      headless: true,
-      args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-dev-shm-usage',
-      ],
-    });
+    const browser = await chromium.launch({ chromiumSandbox: false });
     const page = await browser.newPage();
 
     // Set the HTML content
@@ -121,14 +114,7 @@ export class BuildcomprobanteService {
               process.env.PLAYWRIGHT_BROWSERS_PATH,
             );
             //desde aqui
-            const browser = await chromium.launch({
-              headless: true,
-              args: [
-                '--no-sandbox',
-                '--disable-setuid-sandbox',
-                '--disable-dev-shm-usage',
-              ],
-            });
+            const browser = await chromium.launch({ chromiumSandbox: false });
             const page = await browser.newPage();
 
             // Set the HTML content
@@ -233,14 +219,7 @@ export class BuildcomprobanteService {
             const html = template(data.comprobantes[i]);
             //console.log('testing correct file reading', html);
             // Launch a headless browser
-            const browser = await chromium.launch({
-              headless: true,
-              args: [
-                '--no-sandbox',
-                '--disable-setuid-sandbox',
-                '--disable-dev-shm-usage',
-              ],
-            });
+            const browser = await chromium.launch({ chromiumSandbox: false });
             const page = await browser.newPage();
 
             // Set the HTML content
@@ -335,14 +314,7 @@ export class BuildcomprobanteService {
     const html = template(data.comprobantes[0]);
 
     // Launch a headless browser
-    const browser = await chromium.launch({
-      headless: true, // Ensure headless mode is enabled
-      args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-dev-shm-usage',
-      ], // Disable sandbo
-    });
+    const browser = await chromium.launch({ chromiumSandbox: false });
     const page = await browser.newPage();
 
     // Set the HTML content
