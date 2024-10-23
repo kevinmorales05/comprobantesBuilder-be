@@ -37,10 +37,6 @@ RUN echo "SHOW FILES detail"
 
 RUN ls / -la
 
-RUN echo "Find chromium"
-
-RUN whereis chromium-1134
-
 # Compilar la aplicación si es necesario (si usas TypeScript o algún builder como Next.js o NestJS)
 RUN npm run build
 
