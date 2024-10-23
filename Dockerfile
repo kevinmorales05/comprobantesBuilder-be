@@ -32,6 +32,8 @@ COPY . .
 RUN echo "SHOW FILES"
 RUN ls -la
 
+RUN echo "SHOW FILES play"
+RUN ls /ms-playwright
 # Build the application (if needed)
 RUN npm run build
 
