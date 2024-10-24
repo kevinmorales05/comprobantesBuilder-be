@@ -17,10 +17,8 @@ export class BuildcomprobanteService {
 
     // Compile the template
     const template = Handlebars.compile(templateHtml);
-
     // Render the template with data
     const html = template(data.comprobantes[0]);
-    //process.env.PLAYWRIGHT_BROWSERS_PATH
     // Launch a headless browser
     const browser = await chromium.launch({ chromiumSandbox: false });
     const page = await browser.newPage();
@@ -126,14 +124,6 @@ export class BuildcomprobanteService {
             });
 
             await browser.close();
-            //hasta aqui
-            // const outputPath = path.join(
-            //   process.cwd(),
-            //   'src',
-            //   'pdfs',
-            //   'output.pdf',
-            // );
-            ///fs.writeFileSync(outputPath, pdfBuffer);
             const pdfBufferConverted = Buffer.from(pdfBuffer);
             const pdfBase64 = pdfBufferConverted.toString('base64');
 
@@ -230,13 +220,6 @@ export class BuildcomprobanteService {
             });
 
             await browser.close();
-            const outputPath = path.join(
-              process.cwd(),
-              'src',
-              'pdfs',
-              'output.pdf',
-            );
-            fs.writeFileSync(outputPath, pdfBuffer);
             const pdfBufferConverted = Buffer.from(pdfBuffer);
             const pdfBase64 = pdfBufferConverted.toString('base64');
 
